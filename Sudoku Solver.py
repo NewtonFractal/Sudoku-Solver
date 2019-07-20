@@ -2,9 +2,7 @@ import time
 import numpy
 
 def Cell_Solver(Sudoku,Cell_Number):
-    Number_list = []
-    y_coordinate = []
-    x_coordinate = []
+    Number_list = {"Number_List": [x_coordinate , y_coordinate]}
     for x in range(1*Cell_Number-1,3*Cell_Number):
         for y in range(1*Cell_Number-1,3*Cell_Number):
             if Sudoku[y,x] != 0:

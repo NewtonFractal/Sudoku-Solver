@@ -1,27 +1,27 @@
 import time
 import numpy
 
-def Cell_Solver(Sudoku,Cell_Number):
-    Number_list = {"Number_List": [x_coordinate , y_coordinate]}
-    for x in range(1*Cell_Number-1,3*Cell_Number):
-        for y in range(1*Cell_Number-1,3*Cell_Number):
-            if Sudoku[y,x] != 0:
-                Number_list.append(Sudoku[y,x])
-                x_coordinate.append(x)
-                y_coordinate.append(y)
-    for z in range(1,10):
-        if z not in Number_list:
-            for x in range(1 * Cell_Number - 1, 3 * Cell_Number):
-                for y in range(1 * Cell_Number - 1, 3 * Cell_Number):
-                    if Sudoku[y, x] == 0:
-                        for x in range(x,10):
-                            if Sudoku[y,x] != z:
+def Cell_Solver(Sudoku,numbers,y_coordinates,x_coordinates):
+    for x in numbers:
+        for z in range(0,len(y_coordinates)):
+            print(Sudoku[x_coordinates[z],y_coordinates[z]])
 
-def Sudoku_solver(Sudoku):
-    Cell_Number = 1
+def number_generator(numbers_left,zero_coordinates_y,zero_coordinates_x):
     for x in range(0,3):
         for y in range(0,3):
-            Cell_Solver(Sudoku,Cell_Number)
+            if matrix[x,y] != 0:
+                numbers_left.remove(matrix[x,y])
+            else:
+                zero_coordinates_x.append(x)
+                zero_coordinates_y.append(y)
+    return numbers_left,zero_coordinates_y,zero_coordinates_x
+
+def Sudoku_solver(Sudoku):
+    numbers_left = [1,2,3,4,5,6,7,8,9]
+    zero_coordinates_y = []
+    zero_coordinates_x = []
+    numbers_left,zero_coordinates_y,zero_coordinates_x = number_generator(numbers_left,zero_coordinates_y,zero_coordinates_x)
+    Cell_Solver(Sudoku,numbers_left,zero_coordinates_y,zero_coordinates_x)
 
 matrix = numpy.array([[0,0,3,0,2,0,6,0,0],
                       [9,0,0,3,0,5,0,0,1],
@@ -35,4 +35,3 @@ matrix = numpy.array([[0,0,3,0,2,0,6,0,0],
 
 Sudoku_solver(matrix)
 
-print(matrix)
